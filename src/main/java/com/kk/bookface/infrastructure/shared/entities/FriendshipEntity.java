@@ -17,17 +17,19 @@ import java.sql.Timestamp;
 public class FriendshipEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name= "friendship_id", nullable = false, unique = true)
     private Long friendshipId;
 
+    @Column(name= "friendhip_began", nullable = false)
     private Timestamp friendshipBegan;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_inviting")
+    @JoinColumn(name = "person_inviting", nullable = false)
     private PersonEntity personInviting;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_accepting")
+    @JoinColumn(name = "person_accepting", nullable = true)
     private PersonEntity personAccepting;
 
 }
