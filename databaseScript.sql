@@ -55,11 +55,3 @@ create trigger bookface_friendship_began_trigger
     for each row
         execute procedure createFriendshipBeganDate();
 
-
--- COMMENTS --
-
-comment on sequence person_id_seq is 'Primary key sequence for bookface_person table';
-
-comment on table bookface_person is 'Table storing people information';
-
--- comment on column bookface_person is 'PK for conntento_product table';
