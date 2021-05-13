@@ -1,6 +1,8 @@
 package com.kk.bookface.infrastructure.person;
 
-import com.kk.bookface.domain.person.PersonQueryDto;
+import com.kk.bookface.domain.person.AddPersonQueryDto;
+import com.kk.bookface.domain.person.PersonBasicInfoQueryDto;
+import com.kk.bookface.domain.person.PersonProfileQueryDto;
 import com.kk.bookface.infrastructure.shared.entities.PersonEntity;
 import lombok.AllArgsConstructor;
 
@@ -15,15 +17,16 @@ public class PersonFacade {
 
     private final PersonService personService;
 
-    public PersonQueryDto findPersonById(Long id) {
+    public PersonProfileQueryDto findPersonById(Long id) {
         return personService.findPersonById(id);
     }
 
-    public List<PersonQueryDto> getAllPeople() {
+    //TODO
+    public List<PersonBasicInfoQueryDto> getAllPeople() {
         return personService.getAllPeople();
     }
 
-    public Long addPerson(PersonQueryDto dto) {
+    public Long addPerson(AddPersonQueryDto dto) {
         return personService.addPerson(dto);
     }
 

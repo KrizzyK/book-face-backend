@@ -15,7 +15,8 @@ public class PeopleBlockEntity {
 
     @Id
     @Column(name="block_id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "people_block_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "people_block_id_seq")
     private Long blockId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,6 +26,5 @@ public class PeopleBlockEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_blocked", nullable = false)
     private PersonEntity personBlocked;
-
 
 }

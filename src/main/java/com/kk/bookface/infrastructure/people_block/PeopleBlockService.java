@@ -16,8 +16,7 @@ public class PeopleBlockService {
     private final PeopleBlockFactory factory = new PeopleBlockFactory();
 
     public PeopleBlockQueryDto getPeopleBlockById(Long blockId) {
-        return factory.entityToPeopleBlockQueryDto( repository.findById(blockId).orElseThrow(PeopleBlockNotFoundException::new) );
-
+        return factory.entityToPeopleBlockQueryDto( repository.findById(blockId).orElseThrow( () -> new PeopleBlockNotFoundException(blockId)  ) );
     }
 
     public Long addPeopleBlock(PeopleBlockQueryDto dto, PersonEntity personBlocking, PersonEntity personBlocked) {

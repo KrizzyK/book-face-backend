@@ -17,7 +17,8 @@ public class PersonEntity implements Serializable {
 
     @Id
     @Column(name="person_id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "person_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_id_seq")
     private Long personId;
 
     @Column(name="name", nullable = false)
@@ -25,6 +26,12 @@ public class PersonEntity implements Serializable {
 
     @Column(name="surname", nullable = false)
     private String surname;
+
+    @Column(name="bio", nullable = true)
+    private String bio;
+
+    @Column(name="user_unique_id", nullable = false, unique = true)
+    private String userUniqueId;
 
     @Column(name="account_creation_date")
     private Timestamp accountCreationDate;

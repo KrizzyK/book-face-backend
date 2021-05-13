@@ -1,6 +1,8 @@
 package com.kk.bookface.infrastructure.person.endpoint;
 
-import com.kk.bookface.domain.person.PersonQueryDto;
+import com.kk.bookface.domain.person.AddPersonQueryDto;
+import com.kk.bookface.domain.person.PersonBasicInfoQueryDto;
+import com.kk.bookface.domain.person.PersonProfileQueryDto;
 import com.kk.bookface.domain.shared.exceptions.PersonNotFoundException;
 import com.kk.bookface.infrastructure.person.PersonFacade;
 import lombok.AllArgsConstructor;
@@ -15,12 +17,13 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
+@CrossOrigin (maxAge= 3600, origins="*")
 public class PersonController {
 
     private final PersonFacade personFacade;
 
     @GetMapping("/person")
-    public List<PersonQueryDto> getAllPeople() {
+    public List<PersonBasicInfoQueryDto> getAllPeople() {
         return personFacade.getAllPeople();
     }
 
@@ -29,9 +32,9 @@ public class PersonController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<PersonQueryDto> findPersonById(@RequestParam Long personId){
+    ResponseEntity<PersonProfileQueryDto> findPersonById(@RequestParam Long personId){
         log.info("GET /bookface/getPerson?personId={}", personId );
-        final PersonQueryDto queryDto;
+        final PersonProfileQueryDto queryDto;
         try{
             queryDto = personFacade.findPersonById(personId);
             return ResponseEntity.status(HttpStatus.OK).body(queryDto);
@@ -49,7 +52,7 @@ public class PersonController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<String> addPerson(@RequestBody PersonQueryDto queryDto){
+    ResponseEntity<String> addPerson(@RequestBody AddPersonQueryDto queryDto){
         log.info("POST /bookface/addPerson -> " + queryDto.toString() );
         try{
             Long createdPersonId = personFacade.addPerson(queryDto);

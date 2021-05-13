@@ -4,16 +4,17 @@ DROP SEQUENCE IF EXISTS person_id_seq cascade;
 DROP TABLE IF EXISTS bookface_person cascade;
 DROP SEQUENCE IF EXISTS friendship_id_seq cascade;
 DROP TABLE IF EXISTS bookface_friendship cascade;
-DROP SEQUENCE IF EXISTS block_id_seq cascade;
+DROP SEQUENCE IF EXISTS people_block_id_seq cascade;
 DROP TABLE IF EXISTS bookface_people_block cascade;
 DROP SEQUENCE IF EXISTS post_id_seq cascade;
 DROP TABLE IF EXISTS bookface_post cascade;
+
 
 -- SEQUENCES --
 
 CREATE SEQUENCE person_id_seq START 1 INCREMENT 1;
 CREATE SEQUENCE friendship_id_seq START 1 INCREMENT 1;
-CREATE SEQUENCE block_id_seq START 1 INCREMENT 1;
+CREATE SEQUENCE people_block_id_seq START 1 INCREMENT 1;
 CREATE SEQUENCE post_id_seq START 1 INCREMENT 1;
 
 
@@ -23,9 +24,11 @@ CREATE TABLE bookface_person (
             person_id               integer     primary key default nextval('person_id_seq')    NOT NULL,
             name                    varchar                                                     NOT NULL,
             surname                 varchar                                                     NOT NULL,
+            bio                     varchar                                                             ,
+            user_unique_id          varchar                                                     NOT NULL    UNIQUE,
             account_creation_date   timestamp                                                   NOT NULL
-
 );
+
 
 CREATE TABLE bookface_friendship (
              friendship_id           integer     primary key default nextval('friendship_id_seq')    NOT NULL,
@@ -35,9 +38,9 @@ CREATE TABLE bookface_friendship (
 );
 
 CREATE TABLE bookface_people_block (
-            block_id        integer            primary key default nextval('block_id_seq')      NOT NULL,
-            person_blocking integer                                                             NOT NULL,
-            person_blocked  integer                                                             NOT NULL
+            block_id        integer            primary key default nextval('people_block_id_seq')       NOT NULL,
+            person_blocking integer                                                                     NOT NULL,
+            person_blocked  integer                                                                     NOT NULL
 );
 
 CREATE TABLE bookface_post (

@@ -16,11 +16,12 @@ import java.sql.Timestamp;
 @Entity(name="bookface_friendship")
 public class FriendshipEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "friendship_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "friendship_id_seq")
     @Column(name= "friendship_id", nullable = false, unique = true)
     private Long friendshipId;
 
-    @Column(name= "friendhip_began", nullable = false)
+    @Column(name= "friendship_began")
     private Timestamp friendshipBegan;
 
 

@@ -2,11 +2,8 @@ package com.kk.bookface.infrastructure.friendship.endpoint;
 
 import com.kk.bookface.domain.friendship.CreateFriendshipQueryDto;
 import com.kk.bookface.domain.friendship.FriendshipQueryDto;
-import com.kk.bookface.domain.person.PersonQueryDto;
 import com.kk.bookface.domain.shared.exceptions.FriendshipNotFoundException;
-import com.kk.bookface.domain.shared.exceptions.PersonNotFoundException;
 import com.kk.bookface.infrastructure.friendship.FriendshipFacade;
-import com.kk.bookface.infrastructure.person.PersonFacade;
 import com.kk.bookface.infrastructure.shared.entities.FriendshipEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +22,7 @@ public class FriendshipController {
 
     private final FriendshipFacade friendshipFacade;
 
-    @GetMapping("/friendship")
+    @GetMapping("/bookface/friendship")
     public List<FriendshipEntity> getAllFriendship() {
         return friendshipFacade.getAllFriendships();
     }

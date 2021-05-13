@@ -2,6 +2,7 @@ package com.kk.bookface.infrastructure.friendship;
 
 import com.kk.bookface.domain.friendship.CreateFriendshipQueryDto;
 import com.kk.bookface.domain.friendship.FriendshipQueryDto;
+import com.kk.bookface.domain.person.PersonBasicInfoQueryDto;
 import com.kk.bookface.infrastructure.person.PersonFacade;
 import com.kk.bookface.infrastructure.shared.entities.FriendshipEntity;
 
@@ -29,6 +30,11 @@ public class FriendshipFacade {
         return friendshipService.addFriendship(
                 personFacade.findPersonEntityById(dto.getPersonInvitingId()),
                 personFacade.findPersonEntityById(dto.getPersonAcceptingId())
+        );
+    }
+    public List<PersonBasicInfoQueryDto> getAllFriendsOfPerson(Long personId) {
+        return friendshipService.getAllFriendsOfPerson(
+                personFacade.findPersonEntityById(personId)
         );
     }
 }
