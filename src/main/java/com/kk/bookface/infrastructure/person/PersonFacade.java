@@ -33,4 +33,8 @@ public class PersonFacade {
     public PersonEntity findPersonEntityById(Long id) {
         return personService.findPersonEntityById(id);
     }
+
+    public PersonProfileQueryDto findPersonProfileByUniqueId(String uniqueId) {
+        return personService.findPersonProfileByUniqueId(uniqueId);
+    }
 }

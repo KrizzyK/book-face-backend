@@ -22,8 +22,7 @@ public class PersonFactory {
                 .surname(dto.getSurname())
                 .bio(dto.getBio())
                 .userUniqueId(userUniqueId)
-//                .friendshipsAccepted(new HashSet<FriendshipEntity>())
-//                .friendshipsStarted(new HashSet<FriendshipEntity>())
+                .profilePhotoUrl(dto.getProfilePhotoUrl())
                 .build();
     }
 
@@ -39,6 +38,7 @@ public class PersonFactory {
                 .name(person.getName())
                 .surname(person.getSurname())
                 .bio(person.getBio())
+                .profilePhotoUrl(person.getProfilePhotoUrl())
                 .friends(friends)
                 .build();
     }
@@ -49,8 +49,4 @@ public class PersonFactory {
                 .surname(entity.getSurname())
                 .build();
     }
-
-
-
-
 }

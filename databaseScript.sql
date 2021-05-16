@@ -26,7 +26,8 @@ CREATE TABLE bookface_person (
             surname                 varchar                                                     NOT NULL,
             bio                     varchar                                                             ,
             user_unique_id          varchar                                                     NOT NULL    UNIQUE,
-            account_creation_date   timestamp                                                   NOT NULL
+            account_creation_date   timestamp                                                   NOT NULL,
+            profile_photo_url       varchar
 );
 
 

@@ -9,4 +9,6 @@ import lombok.Data;
 public class PersonBasicInfoQueryDto {
     private String name;
     private String surname;
+    private String userUniqueId;
+    private String profilePhotoUrl;
 }

@@ -45,4 +45,8 @@ public class PersonService {
     public PersonEntity findPersonEntityById(Long id) {
         return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
     }
+
+    public PersonProfileQueryDto findPersonProfileByUniqueId(String uniqueUserId) {
+        return factory.entityToPersonProfileQueryDto( personRepository.findByUserUniqueId(uniqueUserId).orElseThrow(() -> new PersonNotFoundException(uniqueUserId)) );
+    }
 }

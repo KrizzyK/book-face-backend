@@ -11,6 +11,7 @@ public class PersonProfileQueryDto {
     private String name;
     private String surname;
     private String bio;
+    private String profilePhotoUrl;
 
     //friends
     List<PersonBasicInfoQueryDto> friends;

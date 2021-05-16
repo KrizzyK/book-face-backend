@@ -36,6 +36,9 @@ public class PersonEntity implements Serializable {
     @Column(name="account_creation_date")
     private Timestamp accountCreationDate;
 
+    @Column(name="profile_photo_url")
+    private String profilePhotoUrl;
+
     @OneToMany(mappedBy = "personInviting", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<FriendshipEntity> friendshipsStarted;
 

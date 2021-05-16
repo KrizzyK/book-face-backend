@@ -11,4 +11,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     Optional<List<PersonEntity>> findPeopleByNameAndSurname(String name, String surname);
 
     long countAllByNameAndSurname(String name, String surname);
+
+    Optional<PersonEntity> findByUserUniqueId(String userUniqueId);
+
 }

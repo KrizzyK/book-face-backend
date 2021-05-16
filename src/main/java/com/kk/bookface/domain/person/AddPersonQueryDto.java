@@ -9,4 +9,5 @@ public class AddPersonQueryDto {
     private String name;
     private String surname;
     private String bio;
+    private String profilePhotoUrl;
 }

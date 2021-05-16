@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -33,10 +34,30 @@ public class PersonController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     ResponseEntity<PersonProfileQueryDto> findPersonById(@RequestParam Long personId){
-        log.info("GET /bookface/getPerson?personId={}", personId );
+        log.info("GET /bookface/getPersonById?personId={}", personId );
         final PersonProfileQueryDto queryDto;
         try{
             queryDto = personFacade.findPersonById(personId);
+            return ResponseEntity.status(HttpStatus.OK).body(queryDto);
+        }catch(PersonNotFoundException e){
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }catch(Exception e){
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @RequestMapping(
+            path = "/bookface/getPersonByUniqueId",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    ResponseEntity<PersonProfileQueryDto> findPersonByUniqueId(@RequestParam String personUniqueId){
+        log.info("GET /bookface/getPersonByUniqueId?personUniqueId={}", personUniqueId );
+        final PersonProfileQueryDto queryDto;
+        try{
+            queryDto = personFacade.findPersonProfileByUniqueId(personUniqueId);
             return ResponseEntity.status(HttpStatus.OK).body(queryDto);
         }catch(PersonNotFoundException e){
             log.error(e.getMessage());
@@ -63,5 +84,4 @@ public class PersonController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }
